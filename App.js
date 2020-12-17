@@ -1,21 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import LandingScreen from "./src/screens/LandingScreen";
 
-export default function App() {
+const Stack = createStackNavigator();
+const MainAppScreens = () => {
+  //changing default theme color
+  const MyTheme = {
+    dark: false,
+    colors: {
+      primary: "#9F9F9F",
+      background: "#F6F7FA",
+      card: "#F6F7FA",
+      text: "rgb(28, 28, 30)",
+      border: "#f8f8f8",
+    },
+  };
+  //creating stack of screen and putting in navigation
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="LocateME">
+        <Stack.Screen name="LocateME" component={LandingScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default MainAppScreens;
